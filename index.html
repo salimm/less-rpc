@@ -220,7 +220,7 @@
                             <p>LESS-RPC further takes advantage of the following HTTP headers to communicate information necessary to process content of the request.</p>
 
                             <p><strong>Content-type: </strong> content is design to content the encoding format of the content of an HTTP POST request. LESS-RFC follows the guidelines in <a href="https://tools.ietf.org/html/rfc6838">RFC 6838</a> to transfer serialization format and version as shown below:</p>
-                            <code>
+                            <code id="content-type-format">
 content-type: application/vnd.less ;lessversion=&lt;less-rpc version&gt; ; format=&lt;serialization format name&gt; ; formatversion=&lt;serialization format version&gt; [; parameters]</code><br>
                             <p>The format above allows developer to pass serialization format, version and less-rpc version that provides the minimal required information to parse and deserialize the content of POST request. serialization format name will refer to name of the method  (ex. JSON, CBOR and etc.), <b>lessversion</b> corresponds to the version number of less-rpc being used for the content of the message(See sections <a href="#protocol_6"> Service Request</a> and <a href="#protocol_7">Service Response</a> for more information). Finally, <b>formatversion</b> contains the version of the serialization format. All aforementioned fields are <b>required</b> and LESS-RPC stub will return an error (See sections) in absence of one or more of the fields.</p>
 
@@ -396,6 +396,8 @@ content-type: application/vnd.less ;lessversion=&lt;less-rpc version&gt; ; forma
                                     </li>
 
                                 </ul><br/>
+
+                                <p>Service Provider must serialize message using one of the accepted serialization formats stored by client application in HTTP's Accept header. If none of the accepted serialization formats are supported by the Service Provider it must return a response containing the appropriate <a href="#protocol_8">error message</a>. Otherwise, the serialized message must be returned as HTTP response content and HTTP content-type header must be set by service provider following the <a href="#content-type-format">specified format</a></p>
                             
 
                             <!-- end col -->
@@ -404,6 +406,8 @@ content-type: application/vnd.less ;lessversion=&lt;less-rpc version&gt; ; forma
                         <div class="row">                            
                             <h4 id="protocol_5">Client Application - <a href="#top">#back to top</a></h4>
                             <p>
+                            <p>Client Application may request any of the provided functions by a server application. Furthermore, when serializing the message, client application MUST provide the necessary information in "content-type" header of request packet. It MUST also provide accepted serialization formats in ACCEPT header.</p> 
+                            <p>Client may call "/service" to get list of supported serialization formats and serialize content of HTTP request choosing the most efficient serialization format supported. However this is not necessary though it may result in an <a href="#protocol_8">error</a>. When working with large data as arguments client should try to request supported serialization to avoid extra overhead unless it knows for certain what serialization is supported by the service provider.</p>
                                 
                             </p>
                             <!-- end col -->
@@ -460,11 +464,12 @@ content-type: application/vnd.less ;lessversion=&lt;less-rpc version&gt; ; forma
                                 <tr ><td>2002</td><td>SERIALIZATION NOT SUPPORTED</td><td >Error</td><td>Serialization Format in Content-Type not supported</td></tr>
                                 <tr ><td>2003</td><td>ARGS CANNOT BE PARSED</td><td >Error</td><td>One or more serializied args cannot be deserialized</td></tr>
                                 <tr ><td>2004</td><td>METHOD NOT SUPPORTED</td><td >Error</td><td>Service Provider doesn't support service of interest</td></tr>
-                                <tr ><td>2005</td><td>ACCEPT TYPE NOT SUPPORTED</td><td >Error</td><td>Service Provider does not support any of the accepted formats by client</td></tr>
+                                <tr ><td>2005</td><td>CONTENT-TYPE NOT SUPPORTED</td><td >Error</td><td>Service Provider does not support any of the accepted formats by client</td></tr>
                                 <tr ><td>2006</td><td>INVALID ARGS</td><td >Error</td><td>Arguments to the service are not valid. This is sent only if the arguments were deserialized successfully</td>
                                 <tr ><td>2007</td><td>ACCEPT TYPE NOT SUPPORTED</td><td >Error</td><td>Service Provider does not support any of the accepted formats by client</td></tr></tr>
                                 <tr ><td>2008</td><td>INTERNAL ERROR</td><td >Error</td><td>This error is used only if server occurred an error during processing</td></tr></tr>
                                 <tr ><td>2009</td><td>SERIALIZATION ERROR</td><td >Error</td><td>Server failed serializing response object. This error is only sent if the server failed serialization while processing was successful</td></tr></tr>
+                                <tr ><td>2010</td><td>ACCEPT-TYPE NOT SUPPORTED</td><td >Error</td><td>Server application does not support any of the accepted serialization formats provided by the client application in HTTP's Accept header.</td></tr></tr>
                                 <tr ><td>3000-3999</td><td>APPLICATION SPECIFIC ERROR</td><td >Error</td><td>Application will choose the name of the error and replace with "APPLICATION SPECIFIC ERROR"</td></tr></tr>
                             </table>
                             <!-- end col -->
