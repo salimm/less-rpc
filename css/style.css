@@ -187,7 +187,7 @@ p {
 }
 
 .section {
-    padding: 180px 0;
+    padding: 1em 0;
     position: relative;
     display: block;
 }
@@ -213,8 +213,8 @@ strong {
 }
 
 .dark-text {
-    font-size: 4.125rem;
-    line-height: 4.063rem;
+    font-size: 3.125rem;
+    line-height: 1.063rem;
     font-weight: 300;
 }
 
@@ -230,9 +230,9 @@ h4 a {
 }
 
 .dark-text hr {
-    width: 130px;
+    width: 100%;
     margin-left: 0;
-    margin-top: 40px;
+    margin-top: 1em;
     border-width: 1px;
     border-color: #030303;
 }
@@ -368,4 +368,71 @@ a:hover {
 
 .navbar-inverse li.btn a {
     color: #ffffff !important;
+}
+
+
+
+
+/* tabbed section*/
+.tab-container{
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+
+ul.tabs{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+ul.tabs li{
+    background: #CCC;
+    color: #222;
+    display: inline-block;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+ul.tabs li.current{
+    background: #2b303b ;
+    color: #AAA;
+}
+
+.tab-content{
+    display: none;
+    background: #2b303b !important;
+    padding: 1000px;
+}
+
+.tab-content.current{
+    display: inherit;
+    padding: 0px;
+    margin-top: -30px;
+}
+
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #777;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+    border-style: solid 1px #333;
+}
+
+table tr td.desc{
+    width: 50%;
+}
+
+table tr td{
+    width: 10%;   
 }

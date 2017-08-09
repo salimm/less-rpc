@@ -66,24 +66,27 @@
                 <div class="col-md-3">
                     <nav class="docs-sidebar" data-spy="affix" data-offset-top="300" data-offset-bottom="200" role="navigation">
                         <ul class="nav">
-                            <li><a href="#line1">Overview</a></li>
-                            <li><a href="#line2">Conventions</a></li>
-                            <li><a href="#line3">Concepts</a></li>
-                            <li><a href="#line7">protocol</a>
+                            <li><a href="#overview">Overview</a></li>
+                            <li><a href="#terminology">Terminology</a></li>
+                            <li><a href="#protocol">LESS-RPC Protocol</a>
                                 <ul class="nav">
-                                    <li><a href="#line7_1">HTTP Protocol</a></li>
-                                    <li><a href="#line7_1">Service Info</a></li>
-                                    <li><a href="#line7_1">Service Provider</a></li>
-                                    <li><a href="#line7_1">Client</a></li>
-                                    <li><a href="#line7_1">Name Server</a></li>
-                                    <li><a href="#line7_2">Service Request</a></li>
-                                    <li><a href="#line7_3">Service Response</a></li>
-                                    <li><a href="#line7_1">Name Server</a></li>                                    
+                                    <li><a href="#protocol_1">HTTP</a></li>
+                                    <li><a href="#protocol_2">Serialization Format</a></li>
+                                    <li><a href="#protocol_3">Service Information</a></li>                                    
+                                    <li><a href="#protocol_4">Service Provider</a></li>
+                                    <li><a href="#protocol_5">Client Application</a></li>
+                                    <li><a href="#protocol_6">Service Request</a></li>
+                                    <li><a href="#protocol_7">Service Response</a></li>
+                                    <li><a href="#protocol_8">Status</a></li>
                                 </ul>
                             </li>                            
-                            <li><a href="#line9">External Resources</a></li>
-                            <li><a href="#line8">References</a></li>
-                            <li><a href="#line10">Copyright</a></li>
+                            <li><a href="#resources">External Resources</a>
+                                <ul class="nav">
+                                    <li><a href="#implementations">Implementations</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#references">References</a></li>                            
+                            <li><a href="#copyright">Copyright</a></li>
                         </ul>
                     </nav >
                 </div>
@@ -92,7 +95,6 @@
 
                         <div class="row">
                             <div class="col-md-12 left-align">
-                                <h2 class="dark-text">Introduction<hr></h2>
                                 <div class="row">
 
                                     <div class="col-md-12 full">
@@ -100,47 +102,27 @@
                                             <ul>
                                                 <li><strong>Item Name : </strong>LESS-RPC</li>
                                                 <li><strong>Item Version : </strong> BETA</li>
-                                                <li><strong>Author  : </strong> <a href="http://themeforest.net/user/surjithctly" target="_blank">Surjith S M</a></li>
-                                                <li><strong>Support Forum : </strong> <a href="https://support.surjithctly.in/forums" target="_blank">https://support.surjithctly.in/forums</a></li>
+                                                <li><strong>Author  : </strong> <a href="http://salimm.me" target="_blank">Salim Malakouti</a></li>
                                             </ul>
                                         </div>
 
                                         <hr>
                                         <div>
-                                            <p>First of all, Thank you so much for purchasing this template and for being my loyal customer.
-                                                <strong>You are awesome!</strong>
-                                                <br> You are entitled to get free lifetime updates to this product + exceptional support from the author directly.
-                                            </p>
-
-                                            <p>This documentation is to help you regarding each step of customization. Please go through the documentation carefully to understand how this template is made and how to edit this properly. Basic HTML and CSS knowledge is required to customize this template. You may learn basics <a href="http://www.w3schools.com/" target="_blank">here</a>, <a href="https://developer.mozilla.org/" target="_blank">here</a> and <a href="http://learn.shayhowe.com/html-css/building-your-first-web-page/" target="_blank">here</a>. </p>
-
-                                            <h4>Requirements</h4>
-                                            <p>You will need the following sofwares to customize this template.</p>
-                                            <ol>
-                                                <li>Code Editing Software (eg: Dreamweaver, Sublime Text or Notepad)</li>
-                                                <li>Web Browser for testing (eg: Google Chrome or Mozilla Firefox)</li>
-                                                <li>FTP Tool to upload files to Server (eg: <a href="https://filezilla-project.org/download.php?type=client" target="_blank">FileZilla</a>) </li>
-                                            </ol>
-                                            <div class="intro2 clearfix">
-                                                <p><i class="fa fa-exclamation-triangle"></i> Be careful while editing the template. If not edited properly, the design layout may break completely.
-                                                    <br> No support is provided for faulty customization.
-                                                </p>
-                                            </div>
-
+                                            <p>This document provides specifications of <strong>less-rpc</strong> protocol for remote procedure call frameworks that relies on HTTP as transport protocol.
+                                            </p>                                            
                                         </div>
                                     </div>
-
                                 </div>
                                 <!-- end row -->
                             </div>
                         </div>
                     </section>
 
-                    <section id="line1" class="section">
+                    <section id="overview" class="section">
 
                         <div class="row">
                             <div class="col-md-12 left-align">
-                                <h2 class="dark-text">Getting Started <a href="#top">#back to top</a><hr></h2>
+                                <h2 class="dark-text">Overview <a href="#top">#back to top</a><hr></h2>
                             </div>
                             <!-- end col -->
                         </div>
@@ -148,581 +130,426 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <p>Lorem the It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-
-                                <h4>Bootstrap Grid System</h4>
-
-                                <pre class="brush: html; highlight: [2,4]">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        YOUR CODES GOES HERE
-                                    </div>
-                                </div>
-                            </div></pre>
+                                <p>LESS-RPC is a light-weight, flexible, extendable remote procedure call (RPC) protocol that utilizes HTTP(<a href="https://tools.ietf.org/html/rfc7230">RFC 7238</a>) as its transport layer. It takes advantage of the HTTP headers to communicate adequate information regarding the content's format that allows server and client stub of RPC to serialize/deserialize the content. It can be seen an extension of <a href="http://json-rpc.org">json-rpc</a> protocol to support any serialization format. It further defines functionalities that allows server and client stub to inform each other of supported serialization formats. It is designed to:</p>
+                                <ul style="list-style-type: circle; margin-left: 3em;">
+                                    <li>Allow utilization of different serialization format based on environment</li>
+                                    <li>Allow use of optimized serialization formats based on communicated data types</li>
+                                </ul>
 
                                 <p>Our you can use the grid system with 2 columns like this;</p>
+                           
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
 
-                                <pre class="brush: html">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        YOUR CODES GOES HERE
+                    </section>
+                    <!-- end section -->
+
+                    <section id="terminology" class="section">
+
+                        <div class="row">
+                            <div class="col-md-12 lef t-align">
+                                <h2 class="dark-text">Terminology <a href="#top">#back to top</a><hr></h2>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                        <p>This section will provide terminology and definitions required to interpret this document.<br/>
+                        <strong>Protocol: </strong> the official procedure or system of rules governing affairs of state or diplomatic occasions<br/>
+                        <strong>Stub: </strong> A class or code that provides the basic functionality for tiers involved in a remote procedure call<br/>
+                        <strong>Server: </strong> Server is a part of a network based system that sits on a computer and listens to requests sent to a specific port number and processes them. A server application may produce a response to be sent to the client application.<br/>
+                        <strong>Client: </strong> A part of a network based system that sends a requests to a server application.A client may or may not require a response.<br/>
+                        It is important to notice that client and server terminology only refers to a piece of software and not a physical system since it may play the role of client and server interchangeably at any time.<br>
+                        <strong>Server Stub: </strong> A small application used as basis of a server RPC software<br>
+                        <strong>Client Stub: </strong> A small application used as basis of a client RPC software<br/>
+                        <strong>Service: </strong> A service in LESS-RPC is specific method that will do certain processes on a set of inputs and provide the output over RPC.<br/>
+                        <strong>Service Provider: </strong> Is a server application that implements a server stub to provide a certain functionality through RPC.</p>
+                        
+                        <p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+   document are to be interpreted as described in <a href="https://tools.ietf.org/html/rfc2119">RFC 2119</a>.</p>
+
+                        <p>Any object field explained in this document followed with a "*" after the name is a required field and must be provided.</p>                        
+
+                    </section>
+                    <!-- end section -->
+
+                    
+
+
+                    <section id="protocol" class="section">
+
+                        <div class="row">
+                            <div class="col-md-12 lef t-align">
+                                <h2 class="dark-text">LESS-RPC Protocol <a href="#top">#back to top</a><hr></h2>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end row -->
+                        <p>This section describes the details of less-rpc protocol including request and response messages send and received by both server and client stub applications.</p>
+                        <hr>
+
+                        <div class="row">                            
+                            <h4 id="protocol_1">HTTP - <a href="#top">#back to top</a></h4>
+                            <p>Hypertext Transfer Protocol (HTTP) is the foundation of data communication in web and is used to exchange hypertext. LESS-RPC takes advantage of POST (<a href="https://tools.ietf.org/html/rfc7231#section-4.3.3">RFC 7231 section 4.3.3</a>) method to send a Service request to a Service Provider. </p>
+
+                            <blockquote cite="https://tools.ietf.org/html/rfc7231#section-4.3.3">
+                                <p>The POST method requests that the target resource process the
+                                   representation enclosed in the request according to the resource's
+                                   own specific semantics.  For example, POST is used for the following
+                                   functions (among others):<br><br>
+
+                                   <ul style="list-style-type: circle; margin-left: 3em;">
+
+                                    <li>Providing a block of data, such as the fields entered into an HTML
+                                      form, to a data-handling process;</li>
+
+                                   <li>Posting a message to a bulletin board, newsgroup, mailing list,
+                                      blog, or similar group of articles;</li>
+
+                                   <li>Creating a new resource that has yet to be identified by the
+                                      origin server; and</li>
+
+                                   <li>Appending data to a resource's existing representation(s).<l/i>
+                                   </p>
+                            </blockquote>   
+
+                            <p>An RPC call will fit into the first category of functionalities of a POST method which is providing data to be processed by server. Additionally, post request allows client to transfer data as content of the request that can contain plain text or binary data that enables LESS-RPC to transfer serialized format of object as either plain text (<a href="http://www.json.org/">JSON</a>, <a href="https://www.w3.org/XML/">XML</a> and etc) or binary (<a href="http://msgpack.org/">MsgPack</a>, <a href="http://cbor.io/">CBOR</a> and etc.).</p>
+
+                            <p>LESS-RPC further takes advantage of the following HTTP headers to communicate information necessary to process content of the request.</p>
+
+                            <p><strong>Content-type: </strong> content is design to content the encoding format of the content of an HTTP POST request. LESS-RFC follows the guidelines in <a href="https://tools.ietf.org/html/rfc6838">RFC 6838</a> to transfer serialization format and version as shown below:</p>
+                            <code>
+content-type: application/vnd.less ;lessversion=&lt;less-rpc version&gt; ; format=&lt;serialization format name&gt; ; formatversion=&lt;serialization format version&gt; [; parameters]</code><br>
+                            <p>The format above allows developer to pass serialization format, version and less-rpc version that provides the minimal required information to parse and deserialize the content of POST request. serialization format name will refer to name of the method  (ex. JSON, CBOR and etc.), <b>lessversion</b> corresponds to the version number of less-rpc being used for the content of the message(See sections <a href="#protocol_6"> Service Request</a> and <a href="#protocol_7">Service Response</a> for more information). Finally, <b>formatversion</b> contains the version of the serialization format. All aforementioned fields are <b>required</b> and LESS-RPC stub will return an error (See sections) in absence of one or more of the fields.</p>
+
+                            <p>Additionally, one can pass other parameters as described in <a href="https://www.w3.org/Protocols/rfc822/Overview.html">RFC 822</a>. As described same RFC version numbers MUST be quoted if they contain special characters (<a href="https://www.w3.org/Protocols/rfc1341/4_Content-Type.html"> read more</a>).</p>
+                            <!-- end col -->
+
+                            <p><strong>Accept:</strong> this field is defined by HTTP to allow client pass encoding formats acceptable by client to server, LESS-RPC utilizes accept as it was intended to. The value of accept field can be set as a comma-separated list of content-type. However, it cannot be empty</p><br>
+                            <br>
+
+                            <pre>accept: [content-type]+</pre><br>
+                        </div>
+
+                        <div class="row">                            
+                            <h4 id="protocol_2">Serialization Format - <a href="#top">#back to top</a></h4>
+                            <p>Serialization refers to the process of encoding or translating an object in a programming language in a format that can be stored or transmitted over network. It can either be a language specific format such as Java Serialization or language independent like JSON. A list of serialization formats can be found <a href="https://en.wikipedia.org/wiki/Category:Data_serialization_formats">here</a>. Another Wikipedia article offers a <a href="https://en.wikipedia.org/wiki/Comparison_of_data_serialization_formats">comparison</a> of existing methods.</p>
+                            <p>There are numerous RPC protocols that depend on a specific serialization format including <a href="http://www.jsonrpc.org/specification">JSON-RPC</a>, <a href="https://en.wikipedia.org/wiki/XML-RPC">XML-RPC</a> and etc. However, LESS-RPC offers a light-weight minimal protocol that can be used alongside any serialization format. It can further use different serialization formats for different services based on requirements and efficiency.</p> <br>
+                            <!-- end col -->
+                        </div>
+
+                        <div class="row">                            
+                            <h4 id="protocol_3">Service Information - <a href="#top">#back to top</a></h4>
+                            <p>A service is a method/function that can be called by a client stub. A service is implemented and available over network by a Service Provider application through a Server Stub. </p>
+                            <p>
+                                A Service is identified using a ServiceInformation object that contains the following fields:<br>
+                                <ul style="list-style-type: circle; margin-left: 3em;">
+                                    <li><strong>name*: </strong> Name of the service. Service name should b unique for a specific service.</li>
+                                    <li><strong>sid*: </strong> Id of service. Service Id should be unique for a specific service</li>
+                                </ul>
+
+                                A service information object can be used to request a service. An example of service information in different serialization format is shown below:<br>
+
+                                <div class="tab-container">
+
+                                    <ul class="tabs">
+                                        <li class="tab-link current" data-tab="tab-1">JSON</li>
+                                        <li class="tab-link" data-tab="tab-2">XML</li>
+                                        <li class="tab-link" data-tab="tab-3">YAML</li>
+                                    </ul>
+
+                                    <div id="tab-1" class="tab-content current">
+                                        <pre class="brush: js">
+                                            {
+                                                "sid": 1,
+                                                "name": "fnc"                                                
+                                            }
+                                        </pre>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        YOUR CODES GOES HERE
+                                    <div id="tab-2" class="tab-content">
+                                        <pre class="brush: xml">
+                                            <?xml version="1.0" encoding="UTF-8"?>
+                                            <service>
+                                                <sid>1</sid>
+                                                <name>fnc</name>
+                                            </service>
+                                        </pre>
                                     </div>
-                                </div>
-                            </div>
-                         </pre>
+                                    <div id="tab-3" class="tab-content">
+                                        <pre class="brush: python">
+                                            service:
+                                                sid: 1
+                                                name: fnc
+                                        </pre>
+                                    </div>                                    
 
-                                <p>Our you can use the grid system with 3 columns like this;</p>
+                                </div><!-- container -->
 
-                                <pre class="brush: html">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        YOUR CODES GOES HERE
+                            </p>
+                            <!-- end col -->
+                        </div>
+
+                        <div class="row">                            
+                            <h4 id="protocol_4">Service Provider - <a href="#top">#back to top</a></h4>
+                            <p>A Service Provider is an application that implements a service functionality and makes it available through a sever stub. A ServiceProvider is identified using a Service Provider Information object and is required to implement certain functionalities to become fully accessible in LESS-RPC.</p>
+                            <p><h5 ><strong>Service Provider Information Object</strong></h5>
+                            The service provider information object provides information needed to find and interpret running environment of Server Provider application. The fields for a ServiceProviderInfo object are:</p>
+
+                            <ul style="list-style-type: circle; margin-left: 3em;">
+                                <li><strong>url*: </strong>URL to be reached at.</li>
+                                <li><strong>port*: </strong>Port that the service provider is available at.</li>
+                                <li><strong>env*: </strong>Stub environment type for example Java, Python and etc.</li>
+                            </ul><br/>
+
+                            <p>The stub type information will be represent using the following info:</p>
+
+                            <ul style="list-style-type: circle; margin-left: 3em;">
+                                <li><strong>lang*: </strong>Language information as &lt;name&gt;/&lt;version&gt;</li>
+                                <li><strong>os*: </strong>Operating system information as &lt;name&gt;/&lt;version&gt;</li>
+                                <li><strong>compiler*: </strong>Compiler information &lt;name&gt;/&lt;version&gt;</li>
+                            </ul><br/>
+
+
+
+                            <div class="tab-container">
+
+                                    <ul class="tabs">
+                                        <li class="tab-link current" data-tab="sp-tab-1">JSON</li>
+                                        <li class="tab-link" data-tab="sp-tab-2">XML</li>
+                                        <li class="tab-link" data-tab="sp-tab-3">YAML</li>
+                                    </ul>
+
+                                    <div id="sp-tab-1" class="tab-content current">
+                                        <pre class="brush: js">
+                                            {
+                                                "url": "http://localhost",
+                                                "port": 8080,
+                                                "stub-type":{
+                                                    "lang":   "JAVA/1.8.16",
+                                                    "os":     "Ubuntu/14",
+                                                    "compiler": "oracle-jdk/1.8.16"
+                                                }
+                                            }
+                                        </pre>
                                     </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        YOUR CODES GOES HERE
+                                    <div id="sp-tab-2" class="tab-content">
+                                        <pre class="brush: xml">
+                                            <?xml version="1.0" encoding="UTF-8"?>
+                                            <service-provider>
+                                                <url>http://localhost</url>
+                                                <port>8080</port>
+                                                <stub-type>
+                                                    <lang>JAVA/1.8.16</lang>
+                                                    <os>Ubuntu/14</os>
+                                                    <compiler>oracle-jdk/1.8.16</compiler>
+                                                </stub-type>
+                                            </service-provider>
+                                        </pre>
                                     </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        YOUR CODES GOES HERE
-                                    </div>
-                                </div>
-                            </div>
-                         </pre>
-                            </div>
+                                    <div id="sp-tab-3" class="tab-content">
+                                        <pre class="brush: plain">
+                                            service-provider:
+                                                url: "http://localhost"
+                                                port: 8080
+                                                stub-type:
+                                                    lang: JAVA/1.8.16
+                                                    os: Ubunut/14
+                                                    compiler: oracle-jdk/1.8.16
+                                        </pre>
+                                    </div>                                    
+
+                                </div><!-- container -->
+
+                                <h5><strong>Service Provider Information</strong></h5>
+
+                                <p>A Service Provider application provides the following http requests:</p>                            
+                                <ul style="list-style-type: circle; margin-left: 3em;">
+                                    <li><strong>/execute: </strong> 
+                                        <p>Execute is the main Service Provider method that processes a ServiceRequest object and returns an instance of ServiceResponse object. This method can be accessed at "&lt;url&gt;:&lt;port&gt;/execute". Execute method can only be requested using a POST method. Clients should not use GET request as Service Provider application are not required to support GET method.</p>
+                                    </li>
+                                    <li><strong>/ping: </strong>
+                                        <p>Ping doesn't require any parameter and returns a true or false as 1 or 0 in content. Ping can be requested using either GET or POST. It can be accessed using "&lt;url&gt;:&lt;port&gt;/ping".</p>
+                                    </li>
+                                    <li><strong>/info: </strong>
+                                        <p>It can be accessed through "&lt;url&gt;:&lt;port&gt;/info" and will return a ServiceProviderInfo object. This service can be accessed through a POST request.</p>
+                                    </li>
+                                    <li><strong>/service: </strong>
+                                        <p>It can be accessed through "&lt;url&gt;:&lt;port&gt;/service" and will return an instance of ServiceSupport object. "/service" request requires a ServiceInfo instance as argument and must be accessed using POST request.</p>
+
+                                        <h5>Service Support</h5>
+
+                                        <p>ServiceSupport object contains the following fields:</p>
+                                        <ul style="list-style-type: circle; margin-left: 3em;">
+                                            <li><strong>service*: </strong>Instance of ServiceInfo</li>
+                                            <li><strong>serializers*: </strong>Array of SerializationFormat objects</li>
+                                        </ul><br/>
+
+                                        <h5>Serialization Format</h5>
+
+                                        <p>SerializationFormat object contains the following fields:</p>
+                                        <ul style="list-style-type: circle; margin-left: 3em;">
+                                            <li><strong>format*: </strong>Name of serialization format</li>
+                                            <li><strong>version*: </strong>Version information</li>
+                                        </ul><br/>
+                                    </li>
+
+                                </ul><br/>
+                            
+
                             <!-- end col -->
                         </div>
-                        <!-- end row -->
 
+                        <div class="row">                            
+                            <h4 id="protocol_5">Client Application - <a href="#top">#back to top</a></h4>
+                            <p>
+                                
+                            </p>
+                            <!-- end col -->
+                        </div>
+
+                        <div class="row">                            
+                            <h4 id="protocol_6">Service Request - <a href="#top">#back to top</a></h4>
+                            <p>
+                                 
+                                <h5>Service Request</h5>
+
+                                <p>ServiceRequest object contains the following fields:</p>
+                                <ul style="list-style-type: circle; margin-left: 3em;">
+                                    <li><strong>service*: </strong>Instance of ServiceInfo object</li>
+                                    <li><strong>env*: </strong>StubType object instance</li>
+                                    <li><strong>rid*: </strong>contains the request id generated for the request. request id can be used by the client to identify responses in asynchronous or batch mode. </li>
+                                    <li><strong>args*: </strong> an array of SerializedObject instanc</li>
+                                </ul><br/>
+
+
+                                <h5>Serialized Object</h5>
+
+                                <p>SerializedObject object contains the following fields:</p>
+                                <ul style="list-style-type: circle; margin-left: 3em;">
+                                    <li><strong>clspath*: </strong>Class path for the object which depends to the client environment. It will be using class path in Java and Python but it can contain any information necessary to parse an instance of the serialized object</li>
+                                    <li><strong>content*: </strong>Serialized data for object</li>
+                                </ul><br/>
+                            </p>
+                            <!-- end col -->
+                        </div>
+
+                        <div class="row">                            
+                            <h4 id="protocol_7">Service Response - <a href="#top">#back to top</a></h4>
+                            <p>                            
+                                <p>Every call to /execute method will result with a response from the ServiceProvider which will follow the specifications below for a ServiceResponse object. LESS-RPC unlike <a href="http://www.jsonrpc.org/specification">JSON-RPC</a> does not differentiate between normal method calls and notifications. However, the response for notifications will be minimal. Requiring a response for notification can assure client application whether the service provider has been successful in retrieving and processing the notification. ServiceResponse object contains the following fields: </p>
+                                <ul style="list-style-type: circle; margin-left: 3em;">
+                                    <li><strong>service*: </strong>Instance of ServiceInfo object</li>
+                                    <li><strong>rid*: </strong>contains the request id generated for the request. request id can be used by the client to identify responses in asynchronous or batch mode. </li>
+                                    <li><strong>status*: </strong> result status code </li>
+                                    <li><strong>content*: </strong> result object which must be contain fields of a SerializedObject if the result is a value. In case the function called is finished with an error status the content will contain additional information regarding the error in plain text format </li>
+                                </ul><br/>
+                            </p>
+                            <!-- end col -->
+                        </div>
+
+
+                        <div class="row">                            
+                            <h4 id="protocol_8">Status - <a href="#top">#back to top</a></h4>
+                            <table>
+                                <tr style="font-weight :bold;"><td >Code</td><td >Type</td><td >Name</td><td class="desc">Description</td></tr>
+                                <tr ><td>1000</td><td>OK</td><td >Success</td><td>The method call was processed successfully and response is valid</td></tr>
+                                <tr ><td>1001</td><td>RECEIVED</td><td >Success</td><td>The notification was received and processed successfully </td></tr>
+                                <tr ><td>2001</td><td>PARSE ERROR</td><td >Error</td><td>Content could not be prased using the given content-type..</td></tr>
+                                <tr ><td>2002</td><td>SERIALIZATION NOT SUPPORTED</td><td >Error</td><td>Serialization Format in Content-Type not supported</td></tr>
+                                <tr ><td>2003</td><td>ARGS CANNOT BE PARSED</td><td >Error</td><td>One or more serializied args cannot be deserialized</td></tr>
+                                <tr ><td>2004</td><td>METHOD NOT SUPPORTED</td><td >Error</td><td>Service Provider doesn't support service of interest</td></tr>
+                                <tr ><td>2005</td><td>ACCEPT TYPE NOT SUPPORTED</td><td >Error</td><td>Service Provider does not support any of the accepted formats by client</td></tr>
+                                <tr ><td>2006</td><td>INVALID ARGS</td><td >Error</td><td>Arguments to the service are not valid. This is sent only if the arguments were deserialized successfully</td>
+                                <tr ><td>2007</td><td>ACCEPT TYPE NOT SUPPORTED</td><td >Error</td><td>Service Provider does not support any of the accepted formats by client</td></tr></tr>
+                                <tr ><td>2008</td><td>INTERNAL ERROR</td><td >Error</td><td>This error is used only if server occurred an error during processing</td></tr></tr>
+                                <tr ><td>2009</td><td>SERIALIZATION ERROR</td><td >Error</td><td>Server failed serializing response object. This error is only sent if the server failed serialization while processing was successful</td></tr></tr>
+                                <tr ><td>3000-3999</td><td>APPLICATION SPECIFIC ERROR</td><td >Error</td><td>Application will choose the name of the error and replace with "APPLICATION SPECIFIC ERROR"</td></tr></tr>
+                            </table>
+                            <!-- end col -->
+                        </div>
+
+                        <div class="row">                            
+                            <h4 id="protocol_9">Batch - <a href="#top">#back to top</a></h4>
+                            <p></p>
+                            <!-- end col -->
+                        </div>
+
+                        <!-- end row -->
                     </section>
                     <!-- end section -->
-
-                    <section id="line2" class="section">
+                    
+                    
+                    <section id="resources" class="section">
 
                         <div class="row">
-                            <div class="col-md-12 left-align">
-                                <h2 class="dark-text">How to Install WordPress <a href="#top">#back to top</a><hr></h2>
+                            <div class="col-md-12 lef t-align">
+                                <h2 class="dark-text">External Resources <a href="#top">#back to top</a><hr></h2>
                             </div>
                             <!-- end col -->
                         </div>
                         <!-- end row -->
-
-                        <div class="intro2 clearfix">
-                            <p><i class="fa fa-wordpress"></i> Lorem the It is a long established fact that a reader will be distracted..
-                                <br> Please read more about WordPress here. <a href="#">WordPress Installation via FTP.</a> </p>
-                        </div>
-
-                        <hr>
-
-                        <h4>Upload via WordPress Admin</h4>
-
-                        <p>Lorem the It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-
-                        <a href="#" class="btn btn-primary">Get a Installation Service</a> <a href="#" class="btn btn-info">Ask a Question</a>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-8 col-md-offset-2">
-                                <div class="media">
-                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/snFzbPm_RUE" frameborder="0" allowfullscreen></iframe>
-                                </div>
-                            </div>
-
+                        
+                        <div class="row">                            
+                            <h4 id="implementations">Implementations - <a href="#top">#back to top</a></h4>
+                            <ul style="list-style-type: circle; margin-left: 3em;">
+                                <li><a href="http://mouji.org">MOUJI </a> - Full implementation of less-rpc that currently supports: Java, Python. It also has a name server that is not required </li>
+                            </ul>   
+                            <!-- end col -->
                         </div>
 
                     </section>
-                    <!-- end section -->
 
-                    <section id="line3" class="section">
+
+
+                    <section id="references" class="section">
 
                         <div class="row">
-                            <div class="col-md-12 left-align">
-                                <h2 class="dark-text">How to Install Theme <a href="#top">#back to top</a><hr></h2>
+                            <div class="col-md-12 lef t-align">
+                                <h2 class="dark-text">References <a href="#top">#back to top</a><hr></h2>
                             </div>
                             <!-- end col -->
                         </div>
                         <!-- end row -->
+                        <ul style="list-style-type: circle; margin-left: 3em;">
+                            <li><a href="http://www.jsonrpc.org/specification">JSON-RPC 2.0 Specification</a></li>
+                            <li><a href="https://tools.ietf.org/html/rfc7230">HTTP RFC 7238</a></li>
+                        </ul>
+                    </section>
 
-                        <h4>Upload via WordPress Admin</h4>
 
-                        <p>Lorem the It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
 
-                        <a href="#" class="btn btn-primary">Get a Installation Service</a> <a href="#" class="btn btn-info">Ask a Question</a>
+                    <section id="copyright" class="section">
 
-                        <hr>
-
-                        <h4>Upload via FTP Server</h4>
-
-                        <p>Lorem the It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-
-                        <a href="#" class="btn btn-primary">Get a Installation Service</a> <a href="#" class="btn btn-info">Ask a Question</a>
-                        <hr>
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="media">
-                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/yQnQyI5WlKs" frameborder="0" allowfullscreen></iframe>
-                                </div>
-
+                            <div class="col-md-12 lef t-align">
+                                <h2 class="dark-text">Copyright <a href="#top">#back to top</a><hr></h2>
                             </div>
-                            <div class="col-md-6">
-                                <div class="media">
-                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/z0kEVwJB_go" frameborder="0" allowfullscreen></iframe>
-                                </div>
-
-                            </div>
+                            <!-- end col -->
                         </div>
+                        <!-- end row -->
+                        
+                                <pre>
+Copyright [2017] LESS-RPC Group
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</pre>
+                            
 
                     </section>
-                    <!-- end section -->
 
-                    <section id="line4" class="section">
 
-                        <div class="row">
-                            <div class="col-md-12 left-align">
-                                <h2 class="dark-text">Necessary Plugins <a href="#top">#back to top</a><hr></h2>
-                            </div>
-                            <!-- end col -->
-                        </div>
-                        <!-- end row -->
 
-                        <div class="row">
-                            <div class="col-md-4">
-                                <img src="images/upload/plugin1.png" alt="" class="img-responsive img-thumbnail">
-                                <h4>Plugin name #1</h4>
-                                <p>Lorem the It is a long established fact that a reader will be distracted.. Please read more about WordPress here.</p>
-                            </div>
-                            <!-- end col -->
-
-                            <div class="col-md-4">
-                                <img src="images/upload/plugin2.png" alt="" class="img-responsive img-thumbnail">
-                                <h4>Plugin name #2</h4>
-                                <p>Lorem the It is a long established fact that a reader will be distracted.. Please read more about WordPress here.</p>
-                            </div>
-                            <!-- end col -->
-
-                            <div class="col-md-4">
-                                <img src="images/upload/plugin3.png" alt="" class="img-responsive img-thumbnail">
-                                <h4>Plugin name #3</h4>
-                                <p>Lorem the It is a long established fact that a reader will be distracted.. Please read more about WordPress here.</p>
-                            </div>
-                            <!-- end col -->
-
-                            <div class="col-md-12">
-                                <p>Lorem the It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-
-                                <div class="text-center">
-                                    <a href="#" class="btn btn-primary">Get a Installation Service</a> <a href="#" class="btn btn-info">Ask a Question</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end row -->
-
-                    </section>
-                    <!-- end section -->
-
-                    <section id="line5" class="section">
-
-                        <div class="row">
-                            <div class="col-md-12 left-align">
-                                <h2 class="dark-text">Creating Blog Pages <a href="#top">#back to top</a><hr></h2>
-                            </div>
-                            <!-- end col -->
-                        </div>
-                        <!-- end row -->
-
-                        <div class="row">
-
-                            <div class="col-md-12">
-                                <p>Lorem the It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                            </div>
-
-                            <div class="col-md-4">
-                                <a href="upload/thumbnail.png" data-rel="prettyPhoto"><img src="images/upload/thumbnail.png" alt="" class="img-responsive img-thumbnail"></a>
-                                <h4 id="line5_1">WordPress Blog Page - <a href="#top">#top</a></h4>
-                                <ul>
-                                    <li><strong>Step 1</strong> - Lorem the It is a long established fact that a reader ease read more about WordPress here.</li>
-                                    <li><strong>Step 2</strong> - Lorem the It is a long established fact that a reader will be distracted.. Please read more about WordPress here.</li>
-                                    <li><strong>Step 3</strong> - Lorem the It is a long established fact that a read.</li>
-                                </ul>
-                            </div>
-                            <!-- end col -->
-
-                            <div class="col-md-4">
-                                <a href="upload/thumbnail.png" data-rel="prettyPhoto"><img src="images/upload/thumbnail.png" alt="" class="img-responsive img-thumbnail"></a>
-                                <h4 id="line5_2">Blog Post Sections - <a href="#top">#top</a></h4>
-                                <p>Lorem the It is a long established fact that a reader will be distracted.. Please read more about WordPress here.</p>
-                                <ul>
-                                    <li><strong>Step 1</strong> - Lorem the It is a long established fact that a reader ease read more about WordPress here.</li>
-                                    <li><strong>Step 2</strong> - Lorem the It is a long established fact that a reader will be distracted.. Please read more about WordPress here.</li>
-                                    <li><strong>Step 3</strong> - Lorem the It is a long established fact that a read.</li>
-                                </ul>
-                            </div>
-                            <!-- end col -->
-
-                            <div class="col-md-4">
-                                <a href="upload/thumbnail.png" data-rel="prettyPhoto"><img src="images/upload/thumbnail.png" alt="" class="img-responsive img-thumbnail"></a>
-                                <h4 id="line5_3">Create Blog Gallery - <a href="#top">#top</a></h4>
-                                <p>Lorem the It is a long established fact that a reader will be distracted.. Please read more about WordPress here.</p>
-                                <ul>
-                                    <li><strong>Step 1</strong> - Lorem the It is a long established fact that a reader ease read more about WordPress here.</li>
-                                    <li><strong>Step 2</strong> - Lorem the It is a long established fact that a reader will be distracted.. Please read more about WordPress here.</li>
-                                    <li><strong>Step 3</strong> - Lorem the It is a long established fact that a read.</li>
-                                </ul>
-                            </div>
-                            <!-- end col -->
-
-                        </div>
-                        <!-- end row -->
-
-                    </section>
-                    <!-- end section -->
-
-                    <section id="line6" class="section">
-
-                        <div class="row">
-                            <div class="col-md-12 left-align">
-                                <h2 class="dark-text">How to Install Revolution Slider <a href="#top">#back to top</a><hr></h2>
-                            </div>
-                            <!-- end col -->
-                        </div>
-                        <!-- end row -->
-
-                        <div class="row">
-
-                            <div class="col-md-12">
-                                <p>Lorem the It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                            </div>
-
-                            <div class="col-md-6">
-                                <a href="upload/thumbnail.png" data-rel="prettyPhoto"><img src="images/upload/thumbnail.png" alt="" class="img-responsive img-thumbnail"></a>
-                                <h4>Installation Slider</h4>
-                                <ul>
-                                    <li><strong>Step 1</strong> - Lorem the It is a long established fact that a reader ease read more about WordPress here.</li>
-                                    <li><strong>Step 2</strong> - Lorem the It is a long established fact that a reader will be distracted.. Please read more about WordPress here.</li>
-                                    <li><strong>Step 3</strong> - Lorem the It is a long established fact that a read.</li>
-                                </ul>
-                            </div>
-                            <!-- end col -->
-
-                            <div class="col-md-6">
-                                <a href="upload/thumbnail.png" data-rel="prettyPhoto"><img src="images/upload/thumbnail.png" alt="" class="img-responsive img-thumbnail"></a>
-                                <h4>Updating Slider</h4>
-                                <p>Lorem the It is a long established fact that a reader will be distracted.. Please read more about WordPress here.</p>
-                                <ul>
-                                    <li><strong>Step 1</strong> - Lorem the It is a long established fact that a reader ease read more about WordPress here.</li>
-                                    <li><strong>Step 2</strong> - Lorem the It is a long established fact that a reader will be distracted.. Please read more about WordPress here.</li>
-                                    <li><strong>Step 3</strong> - Lorem the It is a long established fact that a read.</li>
-                                </ul>
-                            </div>
-                            <!-- end col -->
-
-                        </div>
-                        <!-- end row -->
-
-                    </section>
-                    <!-- end section -->
-
-                    <section id="line7" class="section">
-
-                        <div class="row">
-                            <div class="col-md-12 left-align">
-                                <h2 class="dark-text">How to Use Option Panel <a href="#top">#back to top</a><hr></h2>
-                            </div>
-                            <!-- end col -->
-                        </div>
-                        <!-- end row -->
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <a href="upload/thumbnail.png" data-rel="prettyPhoto"><img src="images/upload/thumbnail.png" alt="" class="img-responsive img-thumbnail"></a>
-                            </div>
-
-                            <div class="col-md-8">
-                                <h4 id="line7_1">General Options - <a href="#top">#back to top</a></h4>
-                                <p>Lorem the It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. long established fact that a reader will English.</p>
-                            </div>
-                            <!-- end col -->
-                        </div>
-                        <!-- end row -->
-
-                        <hr>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <a href="upload/thumbnail.png" data-rel="prettyPhoto"><img src="images/upload/thumbnail.png" alt="" class="img-responsive img-thumbnail"></a>
-                            </div>
-
-                            <div class="col-md-8">
-                                <h4 id="line7_2">Style Options - <a href="#top">#back to top</a></h4>
-                                <p>Lorem the It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. long established fact that a reader will English.</p>
-                            </div>
-                            <!-- end col -->
-                        </div>
-                        <!-- end row -->
-
-                        <hr>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <a href="upload/thumbnail.png" data-rel="prettyPhoto"><img src="images/upload/thumbnail.png" alt="" class="img-responsive img-thumbnail"></a>
-                            </div>
-
-                            <div class="col-md-8">
-                                <h4 id="line7_3">Header Options - <a href="#top">#back to top</a></h4>
-                                <p>Lorem the It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. long established fact that a reader will English.</p>
-                            </div>
-                            <!-- end col -->
-                        </div>
-                        <!-- end row -->
-
-                        <hr>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <a href="upload/thumbnail.png" data-rel="prettyPhoto"><img src="images/upload/thumbnail.png" alt="" class="img-responsive img-thumbnail"></a>
-                            </div>
-
-                            <div class="col-md-8">
-                                <h4 id="line7_4">Font Options - <a href="#top">#back to top</a></h4>
-                                <p>Lorem the It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. long established fact that a reader will English.</p>
-                            </div>
-                            <!-- end col -->
-                        </div>
-                        <!-- end row -->
-
-                        <hr>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <a href="upload/thumbnail.png" data-rel="prettyPhoto"><img src="images/upload/thumbnail.png" alt="" class="img-responsive img-thumbnail"></a>
-                            </div>
-
-                            <div class="col-md-8">
-                                <h4 id="line7_5">Slider Options - <a href="#top">#back to top</a></h4>
-                                <p>Lorem the It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. long established fact that a reader will English.</p>
-                            </div>
-                            <!-- end col -->
-                        </div>
-                        <!-- end row -->
-
-                        <hr>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <a href="upload/thumbnail.png" data-rel="prettyPhoto"><img src="images/upload/thumbnail.png" alt="" class="img-responsive img-thumbnail"></a>
-                            </div>
-
-                            <div class="col-md-8">
-                                <h4 id="line7_6">Page Options - <a href="#top">#back to top</a></h4>
-                                <p>Lorem the It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. long established fact that a reader will English.</p>
-                            </div>
-                            <!-- end col -->
-                        </div>
-                        <!-- end row -->
-
-                        <hr>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <a href="upload/thumbnail.png" data-rel="prettyPhoto"><img src="images/upload/thumbnail.png" alt="" class="img-responsive img-thumbnail"></a>
-                            </div>
-
-                            <div class="col-md-8">
-                                <h4 id="line7_7">Import & Export Options - <a href="#top">#back to top</a></h4>
-                                <p>Lorem the It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. long established fact that a reader will English.</p>
-                            </div>
-                            <!-- end col -->
-                        </div>
-                        <!-- end row -->
-
-                    </section>
-                    <!-- end section -->
-
-                    <section id="line8" class="section">
-
-                        <div class="row">
-                            <div class="col-md-12 left-align">
-                                <h2 class="dark-text">Support Desk <a href="#top">#back to top</a><hr></h2>
-                            </div>
-                            <!-- end col -->
-                        </div>
-                        <!-- end row -->
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p>Please remember you have purchased a very affordable theme and you have not paid for a full-time web design agency. Occasionally we will help with small tweaks, but these requests will be put on a lower priority due to their nature. Support is also 100% optional and we provide it for your connivence, so please be patient, polite and respectful.</p>
-
-                                <p>Please visit our <a href="http://themeforest.net/user/yourusername"><strong>profile page</strong></a> or ask question <a href="mailto:yourusername@gmail.com">@yourusername</a></p>
-
-                                <strong>Support for my items includes:</strong>
-                                <ul>
-                                    <li>* Responding to questions or problems regarding the item and its features</li>
-                                    <li>* Fixing bugs and reported issues</li>
-                                    <li>* Providing updates to ensure compatibility with new software versions</li>
-                                </ul>
-                                <strong>Item support does not include:</strong>
-                                <ul>
-                                    <li>* Customization and installation services</li>
-                                    <li>* Support for third party software and plug-ins</li>
-                                </ul>
-
-                            </div>
-
-                            <div class="col-md-6">
-                                <strong>Before seeking support, please...</strong>
-                                <ul>
-                                    <li>* Make sure your question is a valid Theme Issue and not a customization request.</li>
-                                    <li>* Make sure you have read through the documentation and any related video guides before asking support on how to accomplish a task.</li>
-                                    <li>* Make sure to double check the theme FAQs.</li>
-                                    <li>* Try disabling any active plugins to make sure there isn't a conflict with a plugin. And if there is this way you can let us know.</li>
-                                    <li>* If you have customized your theme and now have an issue, back-track to make sure you didn't make a mistake. If you have made changes and can't find the issue, please provide us with your changelog.</li>
-                                    <li>* Almost 80% of the time we find that the solution to people's issues can be solved with a simple "Google Search". You might want to try that before seeking support. You might be able to fix the issue yourself much quicker than we can respond to your request.</li>
-                                    <li>* Make sure to state the name of the theme you are having issues with when requesting support via ThemeForest.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- end row -->
-
-                    </section>
-                    <!-- end section -->
-
-                    <section id="line9" class="section">
-
-                        <div class="row">
-                            <div class="col-md-12 left-align">
-                                <h2 class="dark-text">Files & Sources <a href="#top">#back to top</a><hr></h2>
-                            </div>
-                            <!-- end col -->
-                        </div>
-                        <!-- end row -->
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <strong>Included Stylesheets</strong>
-
-                                <p>These are the primary CSS files used for general front-end styling. Use these to customize your theme even further. All included JavaScript codes under <strong>yourthemename/css/</strong></p>
-
-                                <ul>
-                                    <li>1. style.css - Primary stylesheet</li>
-                                    <li>2. bootstrap.css - Bootstrap stylesheet</li>
-                                    <li>3. owl-carousel.css - OWL Carousel</li>
-                                    <li>4. fontawesome.css - FontAwesome Font Icons stylesheet</li>
-                                    <li>5. custom.css - Pathos Color Schemes stylesheet</li>
-                                    <li>6. prettyPhoto.css - Lightbox effect css file</li>
-                                    <li>7. flexslider.css - Flexslider css file</li>
-                                    <li>8. et-line.css - Elegant icons css file</li>
-                                    <li>9. carousel.css - OWL Carousel css file</li>
-                                    <li>10. animate.css - CSS3 animations css file</li>
-                                </ul>
-
-                            </div>
-
-                            <div class="col-md-6">
-                                <strong>Included JavaScript</strong>
-
-                                <p>These are the various attribution inks to the Javascript files included or modified to work with in this theme. All included JavaScript codes under <strong>yourthemename/js/</strong></p>
-
-                                <ul>
-                                    <li>1. bootstrap.js - Bootstrap JavaScript</li>
-                                    <li>2. custom.js - All JavaScript Plugins</li>
-                                    <li>3. retina.js - Retina JavaScript</li>
-                                    <li>4. jquery.js - Base JavaScript</li>
-                                    <li>5. prettyPhoto.js - Lightbox JavaScript</li>
-                                    <li>6. owl-carousel.js - Lightbox JavaScript</li>
-                                    <li>7. revslider.js - Revolution Slider JavaScript</li>
-                                    <li>8. flexslider.js - Flexslider JavaScript</li>
-                                    <li>9. awesome-grid.nin.js - Awesome grid portfolio JavaScript</li>
-                                    <li>10. circle.js - Coming soon page JavaScript</li>
-                                    <li>11. contact.js - Contact form validate JavaScript</li>
-                                    <li>12. isotope.js - Masonry Portfolio JavaScript</li>
-                                    <li>13. progress.js - Progress bar JavaScript</li>
-                                    <li>14. rotate.js - Text rotate effect JavaScript</li>
-                                    <li>15. wow.js - CSS3 animation JavaScript</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- end row -->
-
-                    </section>
-                    <!-- end section -->
-
-                    <section id="line10" class="section">
-
-                        <div class="row">
-                            <div class="col-md-12 left-align">
-                                <h2 class="dark-text">Version History (Changelog) <a href="#top">#back to top</a><hr></h2>
-                            </div>
-                            <!-- end col -->
-                        </div>
-                        <!-- end row -->
-
-                        <div class="row">
-                            <div class="col-md-12">
-
-                                <p>You can find the version history (changelog.txt) file on <strong>yourthemename-full.zip</strong> folder or you can check changelog on theme sale page.</p>
-                                <p>Once again, thank you so much for purchasing this theme. As I said at the beginning, I'd be glad to help you if you have any questions relating to this theme. No guarantees, but I'll do my best to assist. If you have a more general question relating to the themes on ThemeForest, you might consider visiting the forums and asking your question in the "Item Discussion" section.</p>
-
-                                <hr>
-
-                                <h4>Changelog</h4>
-
-                                <pre class="brush: html">
-
-                                        -----------------------------------------------------------------------------------------
-                                        Version 3.8.4 - May 7th, 2015
-                                        -----------------------------------------------------------------------------------------
-
-                                        - new revolution slider plugin version
-                                        - fixed security issue with xss vulnerability
-                                        - improved demo importer for certain server environments
-                                        - updated WooCommerce template files for the outdated message in system status
-                                        - added suhosin check in system status 
-                                        - added information that explains ZipArchive is required on your server for importing demos 
-                                        - portfolio Grid template improvement
-                                        - added more information to demo popup message for individual demo requirements
-                                        - RTL style improvements
-                                        - breadcrumb function improved for various areas
-
-                                        -----------------------------------------------------------------------------------------
-                                        Version 3.8.3 - May 7th, 2015
-                                        -----------------------------------------------------------------------------------------
-                                        - fixed responsive / retina issue for larger logos
-                                        - fusion slider now uses responsive headings all the time
-                                        - dropped custom Avada styles for select boxes in IE since it is not supported
-                                        - fixed compatibility issue with Category Order and Taxonomy Terms Order plugin
-                                        - fixed issue of full width background being affected by padding options
-                                        - tested and fixed hellobar issue 
-                                        - typography settings now apply to single post pages
-                                        - improved smooth scroll in certain situations
-                                        - youtube & vimeo videos will show at normal size in light box as long as video embed link is not used
-                                        - fixed issue of â€œfixedâ€ featured image mode not working for carousels / recent work
-                                        - fixed issue of header tagline font not working with font options
-
-                                        -----------------------------------------------------------------------------------------
-                                        Version 3.8.2 - May 7th, 2015
-                                        -----------------------------------------------------------------------------------------
-                                        - fixed formatting issues with Turkish language files 
-                                        - letter spacing menu option improvement
-                                        - improved fusion slider max content width setting
-                                        - removed the â€œdisable first featured image on productsâ€ setting since it does not apply
-                                        - improved portfolio featured image loading
-                                        - removed encoding from tracking code, space before head, space before body, and custom CSS to stop it from parsing code within TO and removing special characters e.g. +
-                                        - woo login box now shows login fields for logged out users
-                                        - woo cart / my account links now show on mobile 
-                                        - fixed button styling issue with gravity forms
-
-
-                                      </pre>
-
-                            </div>
-                        </div>
-                        <!-- end row -->
-
-                    </section>
-                    <!-- end section -->
                 </div>
                 <!-- // end .col -->
 
@@ -750,6 +577,27 @@
     <script src="js/syntax-highlighter/scripts/shBrushXml.js"></script>
     <script src="js/syntax-highlighter/scripts/shBrushCss.js"></script>
     <script src="js/syntax-highlighter/scripts/shBrushJScript.js"></script>
+    <script src="js/syntax-highlighter/scripts/shBrushPython.js"></script>
+    <script src="js/syntax-highlighter/scripts/shBrushPlain.js"></script>
+
+    <script type="text/javascript">
+        
+        $(document).ready(function(){
+    
+            $('ul.tabs li').click(function(){
+                var tab_id = $(this).attr('data-tab');
+
+                $('ul.tabs li').removeClass('current');
+                $('.tab-content').removeClass('current');
+
+                $(this).addClass('current');
+                $("#"+tab_id).addClass('current');
+            });
+
+        });
+    </script>
+
+
 
 </body>
 
