@@ -373,7 +373,8 @@ content-type: application/vnd.less ;lessversion=&lt;less-rpc version&gt; ; forma
                                         <p>Ping doesn't require any parameter and returns a true or false as 1 or 0 in content. Ping can be requested using either GET or POST. It can be accessed using "&lt;url&gt;:&lt;port&gt;/ping".</p>
                                     </li>
                                     <li><strong>/info: </strong>
-                                        <p>It can be accessed through "&lt;url&gt;:&lt;port&gt;/info" and will return a ServiceProviderInfo object. This service can be accessed through a POST request.</p>
+                                        <p>It can be accessed through "&lt;url&gt;:&lt;port&gt;/info" and will return a ServiceProviderInfo object. This service should be accessed through a GET request.</p>
+                                        <p>Client stub should provide a list of accepted types in Accept header of Http. Client may order the accepted formats according to its preference in descending order. Server stub should choose one that is most efficient or the first one of the list that it supports to serialize the content. The chosen must be communicated to the client stub through the Content-type header of Http response. If no serialization format is provided by client or server doesn't support any of the proposed formats the server stub must return a number in text/plain format containing the proper error code (<a href="#protocol_8">see error codes</a>)</p>
                                     </li>
                                     <li><strong>/service: </strong>
                                         <p>It can be accessed through "&lt;url&gt;:&lt;port&gt;/service" and will return an instance of ServiceSupport object. "/service" request requires a ServiceInfo instance as argument and must be accessed using POST request.</p>
@@ -458,8 +459,7 @@ content-type: application/vnd.less ;lessversion=&lt;less-rpc version&gt; ; forma
                             <h4 id="protocol_8">Status - <a href="#top">#back to top</a></h4>
                             <table>
                                 <tr style="font-weight :bold;"><td >Code</td><td >Type</td><td >Name</td><td class="desc">Description</td></tr>
-                                <tr ><td>1000</td><td>OK</td><td >Success</td><td>The method call was processed successfully and response is valid</td></tr>
-                                <tr ><td>1001</td><td>RECEIVED</td><td >Success</td><td>The notification was received and processed successfully </td></tr>
+                                <tr ><td>1000</td><td>OK</td><td >Success</td><td>The method call was processed successfully and response is valid</td></tr>                                
                                 <tr ><td>2001</td><td>PARSE ERROR</td><td >Error</td><td>Content could not be prased using the given content-type..</td></tr>
                                 <tr ><td>2002</td><td>SERIALIZATION NOT SUPPORTED</td><td >Error</td><td>Serialization Format in Content-Type not supported</td></tr>
                                 <tr ><td>2003</td><td>ARGS CANNOT BE PARSED</td><td >Error</td><td>One or more serializied args cannot be deserialized</td></tr>
@@ -469,7 +469,7 @@ content-type: application/vnd.less ;lessversion=&lt;less-rpc version&gt; ; forma
                                 <tr ><td>2007</td><td>ACCEPT TYPE NOT SUPPORTED</td><td >Error</td><td>Service Provider does not support any of the accepted formats by client</td></tr></tr>
                                 <tr ><td>2008</td><td>INTERNAL ERROR</td><td >Error</td><td>This error is used only if server occurred an error during processing</td></tr></tr>
                                 <tr ><td>2009</td><td>SERIALIZATION ERROR</td><td >Error</td><td>Server failed serializing response object. This error is only sent if the server failed serialization while processing was successful</td></tr></tr>
-                                <tr ><td>2010</td><td>ACCEPT-TYPE NOT SUPPORTED</td><td >Error</td><td>Server application does not support any of the accepted serialization formats provided by the client application in HTTP's Accept header.</td></tr></tr>
+                                <tr ><td>2010</td><td>ACCEPTED TYPE CANNOT BE PARSED</td><td >Error</td><td>SServer cannot parse formats string value because it is either ill-formatted or empty</td></tr></tr>
                                 <tr ><td>3000-3999</td><td>APPLICATION SPECIFIC ERROR</td><td >Error</td><td>Application will choose the name of the error and replace with "APPLICATION SPECIFIC ERROR"</td></tr></tr>
                             </table>
                             <!-- end col -->
