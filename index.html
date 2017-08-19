@@ -66,27 +66,28 @@
                 <div class="col-md-3">
                     <nav class="docs-sidebar" data-spy="affix" data-offset-top="300" data-offset-bottom="200" role="navigation">
                         <ul class="nav">
-                            <li><a href="#overview">Overview</a></li>
-                            <li><a href="#terminology">Terminology</a></li>
-                            <li><a href="#protocol">LESS-RPC Protocol</a>
+                            <li><a href="#overview">1 Overview</a></li>
+                            <li><a href="#terminology">2 Terminology</a></li>
+                            <li><a href="#protocol">3 LESS-RPC Protocol</a>
                                 <ul class="nav">
-                                    <li><a href="#protocol_1">HTTP</a></li>
-                                    <li><a href="#protocol_2">Serialization Format</a></li>
-                                    <li><a href="#protocol_3">Service Information</a></li>                                    
-                                    <li><a href="#protocol_4">Service Provider</a></li>
-                                    <li><a href="#protocol_5">Client Application</a></li>
-                                    <li><a href="#protocol_6">Service Request</a></li>
-                                    <li><a href="#protocol_7">Service Response</a></li>
-                                    <li><a href="#protocol_8">Status</a></li>
+                                    <li><a href="#protocol_http">3.1 HTTP</a></li>
+                                    <li><a href="#protocol_format">3.2 Serialization Format</a></li>
+                                    <li><a href="#protocol_service">3.3 Service Information</a></li>
+                                    <li><a href="#protocol_response">3.4 Request Response</a></li>
+                                    <li><a href="#protocol_sp">3.5 Service Provider</a></li>
+                                    <li><a href="#protocol_client">3.6 Client Application</a></li>
+                                    <li><a href="#protocol_request">3.7 Service Request</a></li>
+                                    <li><a href="#protocol_serviceresponse">3.8 Service Response</a></li>
+                                    <li><a href="#protocol_status">3.9 Status</a></li>
                                 </ul>
                             </li>                            
-                            <li><a href="#resources">External Resources</a>
+                            <li><a href="#resources">4 External Resources</a>
                                 <ul class="nav">
-                                    <li><a href="#implementations">Implementations</a></li>
+                                    <li><a href="#implementations">4.1 Implementations</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#references">References</a></li>                            
-                            <li><a href="#copyright">Copyright</a></li>
+                            <li><a href="#references">5 References</a></li>                            
+                            <li><a href="#copyright">6 Copyright</a></li>
                         </ul>
                     </nav >
                 </div>
@@ -122,7 +123,7 @@
 
                         <div class="row">
                             <div class="col-md-12 left-align">
-                                <h2 class="dark-text">Overview <a href="#top">#back to top</a><hr></h2>
+                                <h2 class="dark-text">1 Overview <a href="#top">#back to top</a><hr></h2>
                             </div>
                             <!-- end col -->
                         </div>
@@ -150,7 +151,7 @@
 
                         <div class="row">
                             <div class="col-md-12 lef t-align">
-                                <h2 class="dark-text">Terminology <a href="#top">#back to top</a><hr></h2>
+                                <h2 class="dark-text">2 Terminology <a href="#top">#back to top</a><hr></h2>
                             </div>
                             <!-- end col -->
                         </div>
@@ -182,7 +183,7 @@
 
                         <div class="row">
                             <div class="col-md-12 lef t-align">
-                                <h2 class="dark-text">LESS-RPC Protocol <a href="#top">#back to top</a><hr></h2>
+                                <h2 class="dark-text">3 LESS-RPC Protocol <a href="#top">#back to top</a><hr></h2>
                             </div>
                             <!-- end col -->
                         </div>
@@ -191,7 +192,7 @@
                         <hr>
 
                         <div class="row">                            
-                            <h4 id="protocol_1">HTTP - <a href="#top">#back to top</a></h4>
+                            <h4 id="protocol_http">3.1 HTTP - <a href="#top">#back to top</a></h4>
                             <p>Hypertext Transfer Protocol (HTTP) is the foundation of data communication in web and is used to exchange hypertext. LESS-RPC takes advantage of POST (<a href="https://tools.ietf.org/html/rfc7231#section-4.3.3">RFC 7231 section 4.3.3</a>) method to send a Service request to a Service Provider. </p>
 
                             <blockquote cite="https://tools.ietf.org/html/rfc7231#section-4.3.3">
@@ -222,7 +223,7 @@
                             <p><strong>Content-type: </strong> content is design to content the encoding format of the content of an HTTP POST request. LESS-RFC follows the guidelines in <a href="https://tools.ietf.org/html/rfc6838">RFC 6838</a> to transfer serialization format and version as shown below:</p>
                             <code id="content-type-format">
 content-type: application/vnd.less ;lessversion=&lt;less-rpc version&gt; ; format=&lt;serialization format name&gt; ; formatversion=&lt;serialization format version&gt; [; parameters]</code><br>
-                            <p>The format above allows developer to pass serialization format, version and less-rpc version that provides the minimal required information to parse and deserialize the content of POST request. serialization format name will refer to name of the method  (ex. JSON, CBOR and etc.), <b>lessversion</b> corresponds to the version number of less-rpc being used for the content of the message(See sections <a href="#protocol_6"> Service Request</a> and <a href="#protocol_7">Service Response</a> for more information). Finally, <b>formatversion</b> contains the version of the serialization format. All aforementioned fields are <b>required</b> and LESS-RPC stub will return an error (See sections) in absence of one or more of the fields.</p>
+                            <p>The format above allows developer to pass serialization format, version and less-rpc version that provides the minimal required information to parse and deserialize the content of POST request. serialization format name will refer to name of the method  (ex. JSON, CBOR and etc.), <b>lessversion</b> corresponds to the version number of less-rpc being used for the content of the message(See sections <a href="#protocol_request"> Service Request</a> and <a href="#protocol_serviceresponse">Service Response</a> for more information). Finally, <b>formatversion</b> contains the version of the serialization format. All aforementioned fields are <b>required</b> and LESS-RPC stub will return an error (See sections) in absence of one or more of the fields.</p>
 
                             <p>Additionally, one can pass other parameters as described in <a href="https://www.w3.org/Protocols/rfc822/Overview.html">RFC 822</a>. As described same RFC version numbers MUST be quoted if they contain special characters (<a href="https://www.w3.org/Protocols/rfc1341/4_Content-Type.html"> read more</a>).</p>
                             <!-- end col -->
@@ -234,14 +235,20 @@ content-type: application/vnd.less ;lessversion=&lt;less-rpc version&gt; ; forma
                         </div>
 
                         <div class="row">                            
-                            <h4 id="protocol_2">Serialization Format - <a href="#top">#back to top</a></h4>
+                            <h4 id="protocol_format">3.2 Serialization Format - <a href="#top">#back to top</a></h4>
                             <p>Serialization refers to the process of encoding or translating an object in a programming language in a format that can be stored or transmitted over network. It can either be a language specific format such as Java Serialization or language independent like JSON. A list of serialization formats can be found <a href="https://en.wikipedia.org/wiki/Category:Data_serialization_formats">here</a>. Another Wikipedia article offers a <a href="https://en.wikipedia.org/wiki/Comparison_of_data_serialization_formats">comparison</a> of existing methods.</p>
-                            <p>There are numerous RPC protocols that depend on a specific serialization format including <a href="http://www.jsonrpc.org/specification">JSON-RPC</a>, <a href="https://en.wikipedia.org/wiki/XML-RPC">XML-RPC</a> and etc. However, LESS-RPC offers a light-weight minimal protocol that can be used alongside any serialization format. It can further use different serialization formats for different services based on requirements and efficiency.</p> <br>
+                            <p>There are numerous RPC protocols that depend on a specific serialization format including <a href="http://www.jsonrpc.org/specification">JSON-RPC</a>, <a href="https://en.wikipedia.org/wiki/XML-RPC">XML-RPC</a> and etc. However, LESS-RPC offers a light-weight minimal protocol that can be used alongside any serialization format. It can further use different serialization formats for different services based on requirements and efficiency. </p> 
+                            <p>A serialization format information will be presented with the following information:</p>
+
+                            <ul style="list-style-type: circle; margin-left: 3em;">
+                                <li><strong>format*: </strong>Name of serialization format</li>
+                                <li><strong>version*: </strong>Version information</li>
+                            </ul><br/>
                             <!-- end col -->
                         </div>
 
                         <div class="row">                            
-                            <h4 id="protocol_3">Service Information - <a href="#top">#back to top</a></h4>
+                            <h4 id="protocol_service">3.3 Service Information - <a href="#top">#back to top</a></h4>
                             <p>A service is a method/function that can be called by a client stub. A service is implemented and available over network by a Service Provider application through a Server Stub. </p>
                             <p>
                                 A Service is identified using a ServiceInformation object that contains the following fields:<br>
@@ -292,7 +299,16 @@ content-type: application/vnd.less ;lessversion=&lt;less-rpc version&gt; ; forma
                         </div>
 
                         <div class="row">                            
-                            <h4 id="protocol_4">Service Provider - <a href="#top">#back to top</a></h4>
+                            <h4 id="protocol_">3.4 Request Response - <a href="#top">#back to top</a></h4>
+                            <p>All responses sent by Server Stub must follow the following object format:</p>
+                            <ul style="list-style-type: circle; margin-left: 3em;">
+                                <li><strong>status*: </strong>Status code of the message(<a href="#protocol_status">see here</a>)</li>
+                                <li><strong>content*: </strong>Content of the response. It can be a number, string or another object depending on type request and response. The response messages explained in rest of document will be send as the content of this message. In case an error happens the content will contain error message if a application specific error is sent. In case standard errors occur, the content may be used to communicate additional information to the client stub. </li> 
+                            </ul><br/>
+                        </div>
+
+                        <div class="row">                            
+                            <h4 id="protocol_sp">3.5 Service Provider - <a href="#top">#back to top</a></h4>
                             <p>A Service Provider is an application that implements a service functionality and makes it available through a sever stub. A ServiceProvider is identified using a Service Provider Information object and is required to implement certain functionalities to become fully accessible in LESS-RPC.</p>
                             <p><h5 ><strong>Service Provider Information Object</strong></h5>
                             The service provider information object provides information needed to find and interpret running environment of Server Provider application. The fields for a ServiceProviderInfo object are:</p>
@@ -368,13 +384,27 @@ content-type: application/vnd.less ;lessversion=&lt;less-rpc version&gt; ; forma
                                 <ul style="list-style-type: circle; margin-left: 3em;">
                                     <li><strong>/execute: </strong> 
                                         <p>Execute is the main Service Provider method that processes a ServiceRequest object and returns an instance of ServiceResponse object. This method can be accessed at "&lt;url&gt;:&lt;port&gt;/execute". Execute method can only be requested using a POST method. Clients should not use GET request as Service Provider application are not required to support GET method.</p>
+                                        <div class="intro2 clearfix">
+                                            <p><i class="fa fa-comment"></i> 
+                                            <ul style="list-style-type: circle; margin-left: 3em;">
+                                                <li>Input: ServiceRequest </li>
+                                                <li>Output: 
+                                                    <ul style="list-style-type: circle; margin-left: 3em;">
+                                                        <li>success: RequestResponse with content as a ServiceResponse</li>
+                                                        <li>error: RequestResponse with content as text containing extra information about the error</li>
+                                                    </ul>
+                                                 </li>
+                                            </ul>
+                                            </p>
+                                        </div>
+
                                     </li>
                                     <li><strong>/ping: </strong>
                                         <p>Ping doesn't require any parameter and returns a true or false as 1 or 0 in content. Ping can be requested using either GET or POST. It can be accessed using "&lt;url&gt;:&lt;port&gt;/ping".</p>
                                     </li>
                                     <li><strong>/info: </strong>
                                         <p>It can be accessed through "&lt;url&gt;:&lt;port&gt;/info" and will return a ServiceProviderInfo object. This service should be accessed through a GET request.</p>
-                                        <p>Client stub should provide a list of accepted types in Accept header of Http. Client may order the accepted formats according to its preference in descending order. Server stub should choose one that is most efficient or the first one of the list that it supports to serialize the content. The chosen must be communicated to the client stub through the Content-type header of Http response. If no serialization format is provided by client or server doesn't support any of the proposed formats the server stub must return a number in text/plain format containing the proper error code (<a href="#protocol_8">see error codes</a>)</p>
+                                        <p>Client stub should provide a list of accepted types in Accept header of Http. Client may order the accepted formats according to its preference in descending order. Server stub should choose one that is most efficient or the first one of the list that it supports to serialize the content. The chosen must be communicated to the client stub through the Content-type header of Http response. If no serialization format is provided by client or server doesn't support any of the proposed formats the server stub must return a number in text/plain format containing the proper error code (<a href="#protocol_status">see error codes</a>)</p>
                                     </li>
                                     <li><strong>/service: </strong>
                                         <p>It can be accessed through "&lt;url&gt;:&lt;port&gt;/service" and will return an instance of ServiceSupport object. "/service" request requires a ServiceInfo instance as argument and must be accessed using POST request.</p>
@@ -384,38 +414,33 @@ content-type: application/vnd.less ;lessversion=&lt;less-rpc version&gt; ; forma
                                         <p>ServiceSupport object contains the following fields:</p>
                                         <ul style="list-style-type: circle; margin-left: 3em;">
                                             <li><strong>service*: </strong>Instance of ServiceInfo</li>
+                                            <li><strong>provider*: </strong>Instance of ServiceProviderInfo</li>
                                             <li><strong>serializers*: </strong>Array of SerializationFormat objects</li>
                                         </ul><br/>
 
-                                        <h5>Serialization Format</h5>
-
-                                        <p>SerializationFormat object contains the following fields:</p>
-                                        <ul style="list-style-type: circle; margin-left: 3em;">
-                                            <li><strong>format*: </strong>Name of serialization format</li>
-                                            <li><strong>version*: </strong>Version information</li>
-                                        </ul><br/>
+                                        
                                     </li>
 
                                 </ul><br/>
 
-                                <p>Service Provider must serialize message using one of the accepted serialization formats stored by client application in HTTP's Accept header. If none of the accepted serialization formats are supported by the Service Provider it must return a response containing the appropriate <a href="#protocol_8">error message</a>. Otherwise, the serialized message must be returned as HTTP response content and HTTP content-type header must be set by service provider following the <a href="#content-type-format">specified format</a></p>
+                                <p>Service Provider must serialize message using one of the accepted serialization formats stored by client application in HTTP's Accept header. If none of the accepted serialization formats are supported by the Service Provider it must return a response containing the appropriate <a href="#protocol_status">error message</a>. Otherwise, the serialized message must be returned as HTTP response content and HTTP content-type header must be set by service provider following the <a href="#content-type-format">specified format</a></p>
                             
 
                             <!-- end col -->
                         </div>
 
                         <div class="row">                            
-                            <h4 id="protocol_5">Client Application - <a href="#top">#back to top</a></h4>
+                            <h4 id="protocol_client">3.6 Client Application - <a href="#top">#back to top</a></h4>
                             <p>
                             <p>Client Application may request any of the provided functions by a server application. Furthermore, when serializing the message, client application MUST provide the necessary information in "content-type" header of request packet. It MUST also provide accepted serialization formats in ACCEPT header.</p> 
-                            <p>Client may call "/service" to get list of supported serialization formats and serialize content of HTTP request choosing the most efficient serialization format supported. However this is not necessary though it may result in an <a href="#protocol_8">error</a>. When working with large data as arguments client should try to request supported serialization to avoid extra overhead unless it knows for certain what serialization is supported by the service provider.</p>
+                            <p>Client may call "/service" to get list of supported serialization formats and serialize content of HTTP request choosing the most efficient serialization format supported. However this is not necessary though it may result in an <a href="#protocol_status">error</a>. When working with large data as arguments client should try to request supported serialization to avoid extra overhead unless it knows for certain what serialization is supported by the service provider.</p>
                                 
                             </p>
                             <!-- end col -->
                         </div>
 
                         <div class="row">                            
-                            <h4 id="protocol_6">Service Request - <a href="#top">#back to top</a></h4>
+                            <h4 id="protocol_request">3.7 Service Request - <a href="#top">#back to top</a></h4>
                             <p>
                                  
                                 <h5>Service Request</h5>
@@ -441,13 +466,12 @@ content-type: application/vnd.less ;lessversion=&lt;less-rpc version&gt; ; forma
                         </div>
 
                         <div class="row">                            
-                            <h4 id="protocol_7">Service Response - <a href="#top">#back to top</a></h4>
+                            <h4 id="protocol_serviceresponse">3.8 Service Response - <a href="#top">#back to top</a></h4>
                             <p>                            
                                 <p>Every call to /execute method will result with a response from the ServiceProvider which will follow the specifications below for a ServiceResponse object. LESS-RPC unlike <a href="http://www.jsonrpc.org/specification">JSON-RPC</a> does not differentiate between normal method calls and notifications. However, the response for notifications will be minimal. Requiring a response for notification can assure client application whether the service provider has been successful in retrieving and processing the notification. ServiceResponse object contains the following fields: </p>
                                 <ul style="list-style-type: circle; margin-left: 3em;">
                                     <li><strong>service*: </strong>Instance of ServiceInfo object</li>
-                                    <li><strong>rid*: </strong>contains the request id generated for the request. request id can be used by the client to identify responses in asynchronous or batch mode. </li>
-                                    <li><strong>status*: </strong> result status code </li>
+                                    <li><strong>rid*: </strong>contains the request id generated for the request. request id can be used by the client to identify responses in asynchronous or batch mode. </li>                                    
                                     <li><strong>content*: </strong> result object which must be contain fields of a SerializedObject if the result is a value. In case the function called is finished with an error status the content will contain additional information regarding the error in plain text format </li>
                                 </ul><br/>
                             </p>
@@ -456,21 +480,27 @@ content-type: application/vnd.less ;lessversion=&lt;less-rpc version&gt; ; forma
 
 
                         <div class="row">                            
-                            <h4 id="protocol_8">Status - <a href="#top">#back to top</a></h4>
+                            <h4 id="protocol_status">3.9 Status - <a href="#top">#back to top</a></h4>
+                            <p>
+                                LESS-RPC has its own list of status codes. However, the HTTP response status must be set appropriately to guide the client stub to parse the RequestResponse object accordingly. Therefore, every less-rpc status has an matching HTTP status code shown in table below. However, this matching is not a one-to-one relationship.
+                            </p>
                             <table>
-                                <tr style="font-weight :bold;"><td >Code</td><td >Type</td><td >Name</td><td class="desc">Description</td></tr>
-                                <tr ><td>1000</td><td>OK</td><td >Success</td><td>The method call was processed successfully and response is valid</td></tr>                                
-                                <tr ><td>2001</td><td>PARSE ERROR</td><td >Error</td><td>Content could not be prased using the given content-type..</td></tr>
-                                <tr ><td>2002</td><td>SERIALIZATION NOT SUPPORTED</td><td >Error</td><td>Serialization Format in Content-Type not supported</td></tr>
-                                <tr ><td>2003</td><td>ARGS CANNOT BE PARSED</td><td >Error</td><td>One or more serializied args cannot be deserialized</td></tr>
-                                <tr ><td>2004</td><td>METHOD NOT SUPPORTED</td><td >Error</td><td>Service Provider doesn't support service of interest</td></tr>
-                                <tr ><td>2005</td><td>CONTENT-TYPE NOT SUPPORTED</td><td >Error</td><td>Service Provider does not support any of the accepted formats by client</td></tr>
-                                <tr ><td>2006</td><td>INVALID ARGS</td><td >Error</td><td>Arguments to the service are not valid. This is sent only if the arguments were deserialized successfully</td>
-                                <tr ><td>2007</td><td>ACCEPT TYPE NOT SUPPORTED</td><td >Error</td><td>Service Provider does not support any of the accepted formats by client</td></tr></tr>
-                                <tr ><td>2008</td><td>INTERNAL ERROR</td><td >Error</td><td>This error is used only if server occurred an error during processing</td></tr></tr>
-                                <tr ><td>2009</td><td>SERIALIZATION ERROR</td><td >Error</td><td>Server failed serializing response object. This error is only sent if the server failed serialization while processing was successful</td></tr></tr>
-                                <tr ><td>2010</td><td>ACCEPTED TYPE CANNOT BE PARSED</td><td >Error</td><td>SServer cannot parse formats string value because it is either ill-formatted or empty</td></tr></tr>
-                                <tr ><td>3000-3999</td><td>APPLICATION SPECIFIC ERROR</td><td >Error</td><td>Application will choose the name of the error and replace with "APPLICATION SPECIFIC ERROR"</td></tr></tr>
+                                <tr style="font-weight :bold;"><td >Code</td><td >Type</td><td >Name</td><td>HTTP Status</td><td class="desc">Description</td></tr>
+                                <tr ><td>1000</td><td>OK</td><td >Success</td><td>200 - OK</td><td>The method call was processed successfully and response is valid</td></tr>                                
+                                <tr ><td>2001</td><td>PARSE ERROR</td><td >Error</td><td>400 - Bad Request</td><td>Content could not be prased using the given content-type..</td></tr>
+                                <tr ><td>2002</td><td>SERIALIZATION NOT SUPPORTED</td><td >Error</td><td>400 - Bad Request</td><td>Serialization Format in Content-Type not supported</td></tr>
+                                <tr ><td>2003</td><td>ARGS CANNOT BE PARSED</td><td >Error</td><td>400 - Bad Request</td><td>One or more serializied args cannot be deserialized</td></tr>
+                                <tr ><td>2004</td><td>SERVICE NOT SUPPORTED</td><td >Error</td><td>405 - Method Not Allowed</td><td>Service Provider doesn't support service of interest</td></tr>
+                                <tr ><td>2005</td><td>CONTENT-TYPE NOT SUPPORTED</td><td >Error</td><td>400 - Bad Request</td><td>Service Provider does not support any of the accepted formats by client</td></tr>
+                                <tr ><td>2006</td><td>INVALID ARGS</td><td >Error</td><td>400 - Bad Request</td><td>Arguments to the service are not valid. This is sent only if the arguments were deserialized successfully</td>
+                                <tr ><td>2007</td><td>ACCEPT TYPE NOT SUPPORTED</td><td >Error</td><td>406 - Not Acceptable</td><td>Service Provider does not support any of the accepted formats by client</td></tr></tr>
+                                <tr ><td>2008</td><td>INTERNAL ERROR</td><td >Error</td><td>500 - Internal Server Error</td><td>This error is used only if server occurred an error during processing</td></tr></tr>
+                                <tr ><td>2009</td><td>SERIALIZATION ERROR</td><td >Error</td><td>500 - Internal Server Error</td><td>Server failed serializing response object. This error is only sent if the server failed serialization while processing was successful</td></tr></tr>
+                                <tr ><td>2010</td><td>ACCEPTED TYPE CANNOT BE PARSED</td><td >Error</td><td>400 - Bad Request</td><td>SServer cannot parse formats string value because it is either ill-formatted or empty</td></tr></tr>
+                                <tr ><td>2011</td><td>CONTENT TYPE CANNOT BE PARSED</td><td >Error</td><td>400 - Bad Request</td><td>Server cannot parse formats string value because it is either ill-formatted or empty</td></tr></tr>
+                                <tr ><td>2012</td><td>POST CONTENT NOT AVAILABLE</td><td >Error</td><td>400 - Bad Request</td><td>Post content is required but not provided</td></tr></tr>
+                                <tr ><td>2013</td><td>WRONG HTTP METHOD</td><td >Error</td><td>400 - Bad Request</td><td>This error is returned when POST method was required but not used</td></tr></tr>
+                                <tr ><td>3000-3999</td><td>APPLICATION SPECIFIC ERROR</td><td >Error</td><td>500 - miInternal Server Error</td><td>Application will choose the name of the error and replace with "APPLICATION SPECIFIC ERROR"</td></tr></tr>
                             </table>
                             <!-- end col -->
                         </div>
@@ -490,14 +520,14 @@ content-type: application/vnd.less ;lessversion=&lt;less-rpc version&gt; ; forma
 
                         <div class="row">
                             <div class="col-md-12 lef t-align">
-                                <h2 class="dark-text">External Resources <a href="#top">#back to top</a><hr></h2>
+                                <h2 class="dark-text">4 External Resources <a href="#top">#back to top</a><hr></h2>
                             </div>
                             <!-- end col -->
                         </div>
                         <!-- end row -->
                         
                         <div class="row">                            
-                            <h4 id="implementations">Implementations - <a href="#top">#back to top</a></h4>
+                            <h4 id="implementations">4.1 Implementations - <a href="#top">#back to top</a></h4>
                             <ul style="list-style-type: circle; margin-left: 3em;">
                                 <li><a href="http://mouji.org">MOUJI </a> - Full implementation of less-rpc that currently supports: Java, Python. It also has a name server that is not required </li>
                             </ul>   
@@ -512,7 +542,7 @@ content-type: application/vnd.less ;lessversion=&lt;less-rpc version&gt; ; forma
 
                         <div class="row">
                             <div class="col-md-12 lef t-align">
-                                <h2 class="dark-text">References <a href="#top">#back to top</a><hr></h2>
+                                <h2 class="dark-text">5 References <a href="#top">#back to top</a><hr></h2>
                             </div>
                             <!-- end col -->
                         </div>
@@ -529,7 +559,7 @@ content-type: application/vnd.less ;lessversion=&lt;less-rpc version&gt; ; forma
 
                         <div class="row">
                             <div class="col-md-12 lef t-align">
-                                <h2 class="dark-text">Copyright <a href="#top">#back to top</a><hr></h2>
+                                <h2 class="dark-text">6 Copyright <a href="#top">#back to top</a><hr></h2>
                             </div>
                             <!-- end col -->
                         </div>
